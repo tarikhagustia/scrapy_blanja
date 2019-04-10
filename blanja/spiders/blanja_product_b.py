@@ -19,7 +19,8 @@ class BlanjaProductBSpider(scrapy.Spider):
         session_maker = sessionmaker(bind=engine)
 
         session = session_maker()
-        for category in session.query(CategoryDB).limit(207).offset(414):
+        # Handphone &amp; Tablet, Komputer &amp; Laptop, Elektronik Rumah Tanggas
+        for category in session.query(CategoryDB).filter(CategoryDB.parent_id.in_([20000004, 20000005, 20000006])):
             page_no = 1
             category_id = category.id_core
             yield scrapy.Request(

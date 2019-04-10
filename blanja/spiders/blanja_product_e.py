@@ -8,8 +8,8 @@ from blanja.items import ProductItem, ShopItem
 from blanja.models import db_connect, CategoryDB
 
 
-class BlanjaProductASpider(scrapy.Spider):
-    name = 'blanja_product_a'
+class BlanjaProductESpider(scrapy.Spider):
+    name = 'blanja_product_e'
     allowed_domains = ['blanja.com']
     rotate_user_agent = True
 
@@ -19,13 +19,12 @@ class BlanjaProductASpider(scrapy.Spider):
         session_maker = sessionmaker(bind=engine)
 
         session = session_maker()
-        # Fashion
-        # Kesehatan &amp; Kecantikan
-        # Olahraga, Outdoor dan Travel
-        for category in session.query(CategoryDB).filter(CategoryDB.parent_id.in_([20000001, 20000002, 20000003])):
+        # Jam Tangan &amp; Aksesoris, Tiket, Voucher &amp; Hadiah, Produk Digital
+        for category in session.query(CategoryDB).filter(CategoryDB.parent_id.in_([20000013, 20000014, 20000015])):
             page_no = 1
             category_id = category.id_core
             url = "https://item.blanja.com/items/a/search?oneNav={}&pageNo=1".format(category_id)
+            print(url)
             yield scrapy.Request(
                 url=url,
                 callback=self.parse, meta={

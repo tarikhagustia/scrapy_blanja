@@ -5,7 +5,6 @@ ROBOTSTXT_OBEY = False
 DEFAULT_REQUEST_HEADERS = {
     'Origin': 'https://www.blanja.com',
     'Referer': 'https://www.blanja.com/',
-    'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:23.0) Gecko/20100101 Firefox/23.0'
 }
 ITEM_PIPELINES = {
     'blanja.pipelines.BlanjaPipeline': 300,
